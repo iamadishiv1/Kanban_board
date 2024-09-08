@@ -27,7 +27,7 @@ function Task({ task, index, moveTask, handleStatusChange, handleDeleteTask, set
 
   return (
     <div ref={(node) => ref(drop(node))} className="relative bg-white p-4 mb-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
-      <div className={`absolute top-2 right-2 px-3 py-1 rounded-full text-xs font-semibold bg-clip-text text-gray-600`}>
+      <div className="absolute top-2 right-2 px-3 py-1 rounded-full text-xs font-semibold bg-clip-text text-gray-600">
         {task.priority}
       </div>
       <div className="flex flex-col">
@@ -36,7 +36,7 @@ function Task({ task, index, moveTask, handleStatusChange, handleDeleteTask, set
         <p className="text-gray-500 mb-2">Due: {task.date}</p>
       </div>
       <div className="flex items-center justify-between mt-2">
-        <select value={task.status} onChange={(e) => handleStatusChange(task.id, e.target.value)} className="border p-1 rounded text-sm">
+        <select value={task.status} onChange={(e) => handleStatusChange(task.id, e.target.value)} className="border border-purple-300 p-1 rounded text-sm">
           <option value="TODO">TODO</option>
           <option value="IN PROGRESS">IN PROGRESS</option>
           <option value="COMPLETED">COMPLETED</option>
@@ -74,7 +74,7 @@ function TaskColumn({ status, tasks, moveTask, handleStatusChange, handleDeleteT
 
   const statusColors = {
     TODO: 'bg-purple-200 text-purple-800',
-    'IN PROGRESS': 'bg-blue-200 text-blue-800',
+    'IN PROGRESS': 'bg-orange-200 text-orange-800',
     COMPLETED: 'bg-green-200 text-green-800',
   };
 
