@@ -26,17 +26,17 @@ function Task({ task, index, moveTask, handleStatusChange, handleDeleteTask, set
   });
 
   return (
-    <div ref={(node) => ref(drop(node))} className="relative bg-white p-4 mb-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200">
+    <div ref={(node) => ref(drop(node))} className="relative bg-white p-4 mb-4 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
       <div className="absolute top-2 right-2 px-3 py-1 rounded-full text-xs font-semibold bg-clip-text text-gray-600">
         {task.priority}
       </div>
       <div className="flex flex-col">
-        <p className="text-lg font-semibold text-gray-800">{task.title}</p>
-        <p className="text-gray-600 mb-2">{task.description}</p>
-        <p className="text-gray-500 mb-2">Due: {task.date}</p>
+        <p className="text-lg font-semibold text-gray-900">{task.title}</p>
+        <p className="text-gray-700 mb-2">{task.description}</p>
+        <p className="text-gray-600 mb-2">Due: {task.date}</p>
       </div>
       <div className="flex items-center justify-between mt-2">
-        <select value={task.status} onChange={(e) => handleStatusChange(task.id, e.target.value)} className="border border-purple-300 p-1 rounded text-sm">
+        <select value={task.status} onChange={(e) => handleStatusChange(task.id, e.target.value)} className="border border-gray-300 p-2 rounded text-sm bg-gray-50 focus:ring-2 focus:ring-purple-500">
           <option value="TODO">TODO</option>
           <option value="IN PROGRESS">IN PROGRESS</option>
           <option value="COMPLETED">COMPLETED</option>
@@ -44,7 +44,7 @@ function Task({ task, index, moveTask, handleStatusChange, handleDeleteTask, set
         <div className="flex space-x-2">
           <button
             onClick={() => handleDeleteTask(task.id)}
-            className="bg-gradient-to-r from-red-500 to-red-700 text-white px-3 py-1 rounded shadow-lg hover:shadow-red-500/50 transition-shadow"
+            className="bg-gradient-to-r from-red-500 to-red-700 text-white px-3 py-1 rounded-lg shadow-md hover:shadow-lg transition-shadow"
           >
             Delete
           </button>
@@ -53,7 +53,7 @@ function Task({ task, index, moveTask, handleStatusChange, handleDeleteTask, set
               setCurrentTask(task);
               setShowModal(true);
             }}
-            className="bg-gradient-to-r from-blue-500 to-blue-700 text-white px-3 py-1 rounded shadow-lg hover:shadow-blue-500/50 transition-shadow"
+            className="bg-gradient-to-r from-blue-500 to-blue-700 text-white px-3 py-1 rounded-lg shadow-md hover:shadow-lg transition-shadow"
           >
             Edit
           </button>
@@ -73,14 +73,14 @@ function TaskColumn({ status, tasks, moveTask, handleStatusChange, handleDeleteT
   });
 
   const statusColors = {
-    TODO: 'bg-purple-200 text-purple-800',
-    'IN PROGRESS': 'bg-orange-200 text-orange-800',
-    COMPLETED: 'bg-green-200 text-green-800',
+    TODO: 'bg-gradient-to-r from-purple-200 to-purple-300 text-purple-900',
+    'IN PROGRESS': 'bg-gradient-to-r from-orange-200 to-orange-300 text-orange-900',
+    COMPLETED: 'bg-gradient-to-r from-green-200 to-green-300 text-green-900',
   };
 
   return (
-    <div ref={drop} className={`flex-1 min-w-[320px] p-4 rounded-lg shadow-lg transition-all duration-200 ${status === 'TODO' ? 'bg-purple-100' : status === 'IN PROGRESS' ? 'bg-orange-100' : 'bg-green-100'}`}>
-      <h2 className={`text-xl font-bold mb-4 capitalize p-2 rounded ${statusColors[status]}`}>{status}</h2>
+    <div ref={drop} className={`flex-1 min-w-[320px] p-4 rounded-lg shadow-lg transition-all duration-300 ${status === 'TODO' ? 'bg-purple-50' : status === 'IN PROGRESS' ? 'bg-orange-50' : 'bg-green-50'}`}>
+      <h2 className={`text-xl font-bold mb-4 capitalize p-2 rounded-lg ${statusColors[status]}`}>{status}</h2>
       {tasks.map((task, index) => (
         <Task key={task.id} task={task} index={index} moveTask={moveTask} handleStatusChange={handleStatusChange} handleDeleteTask={handleDeleteTask} setCurrentTask={setCurrentTask} setShowModal={setShowModal} />
       ))}
@@ -147,14 +147,14 @@ function App() {
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="p-6 bg-gray-100 min-h-screen">
-        <div className="flex justify-between items-center mb-6 bg-white p-5 rounded-lg">
-          <h1 className="text-3xl font-bold text-gray-800">Desktop and Mobile Application</h1>
+        <div className="flex justify-between items-center mb-6 bg-white p-5 rounded-lg shadow-lg">
+          <h1 className="text-3xl font-bold text-gray-900">Desktop and Mobile Application</h1>
           <button
             onClick={() => {
               setCurrentTask(null);
               setShowModal(true);
             }}
-            className="p-2 bg-purple-500 text-white rounded-md shadow-md hover:bg-purple-600 p-3"
+            className="bg-gradient-to-r from-purple-500 to-purple-700 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-purple-600"
           >
             Create Task
           </button>
